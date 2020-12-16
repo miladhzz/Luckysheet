@@ -20,87 +20,209 @@
 </head>
 
 <body>
-	<div id="luckysheet" style="margin:0px;padding:0px;position:absolute;width:100%;height:100%;left: 0px;top: 0px;"></div>
+	<div id="luckysheet" style="margin:0px;padding:0px;position:absolute;width:100%;height:100%;left: 0px;top: 0px;">
+	</div>
 
 	<!-- demo feature, non-production use -->
 	<script src="./demoData/demoFeature.js"></script>
 
 	<script type="module">
-		import sheetFormula from './demoData/sheetFormula.js'
+		// import sheetFormula from './demoData/sheetFormula.js'
 		import sheetCell from './demoData/sheetCell.js'
-		import sheetConditionFormat from './demoData/sheetConditionFormat.js'
-		import sheetTable from './demoData/sheetTable.js'
-		import sheetComment from './demoData/sheetComment.js'
-		import sheetPivotTableData from './demoData/sheetPivotTableData.js'
-		import sheetPivotTable from './demoData/sheetPivotTable.js'
-		import sheetSparkline from './demoData/sheetSparkline.js'
-		import sheetChart from './demoData/sheetChart.js'
-		import sheetPicture from './demoData/sheetPicture.js'
-		import sheetDataVerification from './demoData/sheetDataVerification.js'
+		// import sheetConditionFormat from './demoData/sheetConditionFormat.js'
+		// import sheetTable from './demoData/sheetTable.js'
+		// import sheetComment from './demoData/sheetComment.js'
+		// import sheetPivotTableData from './demoData/sheetPivotTableData.js'
+		// import sheetPivotTable from './demoData/sheetPivotTable.js'
+		// import sheetSparkline from './demoData/sheetSparkline.js'
+		// import sheetChart from './demoData/sheetChart.js'
+		// import sheetPicture from './demoData/sheetPicture.js'
+		// import sheetDataVerification from './demoData/sheetDataVerification.js'
 
 		// According to the browser language
-		let lang = luckysheetDemoUtil.language() === 'zh' ? 'zh' : 'en';
+		// let lang = luckysheetDemoUtil.language() === 'zh' ? 'zh' : 'en';
 
+		const options = {
+			container: 'luckysheet', // set the id of the DOM container
+			title: 'گزارش تستی', // set the name of the table
+			lang: 'en', // set language
+			showtoolbar: true,
+			enableAddRow: false,
+			loadUrl: "http://127.0.0.1:8000/",
+			// loadSheetUrl: "dsfsdf"
+			// allowUpdate: true,
+			// updateUrl: "sdfdsfd",
+			// plugins: ['chart'],
+			// hook:{
+			// 	fireMousedown:function(r){
+			// 		console.log("rowNum", r);
+			// 	},
+			// },
+			// column: 10,
+			// row: 10,
+			showinfobar: true,
+			showsheetbar: true,
+			cellRightClickConfig:{
+				insertColumn: false,
+				insertRow: false,
+			},
+			// myFolderUrl = "www.gfgfg.com",
+			showtoolbarConfig: {
+			// 	undoRedo: false, //Undo redo
+			// 	paintFormat: false, //Format brush
+			// 	currencyFormat: false, //currency format
+			// 	percentageFormat: false, //Percentage format
+			// 	numberDecrease: false, //'Decrease the number of decimal places'
+			// 	numberIncrease: false, //'Increase the number of decimal places
+			// 	moreFormats: false, //'More Formats'
+			// 	font: false, //'font'
+			// 	fontSize: false, //'Font size'
+			// 	bold: false, //'Bold (Ctrl+B)'
+			// 	italic: false, //'Italic (Ctrl+I)'
+			// 	strikethrough: false, //'Strikethrough (Alt+Shift+5)'
+			// 	underline: false, // 'Underline (Alt+Shift+6)'
+			// 	textColor: false, //'Text color'
+			// 	fillColor: false, //'Cell color'
+			// 	border: false, //'border'
+			// 	mergeCell: false, //'Merge cells'
+			// 	horizontalAlignMode: false, //'Horizontal alignment'
+			// 	verticalAlignMode: false, //'Vertical alignment'
+			// 	textWrapMode: false, //'Wrap mode'
+			// 	textRotateMode: false, //'Text Rotation Mode'
+			// 	image: false, // 'Insert picture'
+			// 	link: false, // 'Insert link'
+				chart: false, //'chart' (the icon is hidden, but if the chart plugin is configured, you can still create a new chart by right click)
+			// 	postil: false, //'comment'
+				pivotTable: false, //'PivotTable'
+			// 	function: false, //'formula'
+			// 	frozenMode: false, //'freeze mode'
+			// 	sortAndFilter: false, //'Sort and filter'
+			// 	conditionalFormat: false, //'Conditional Format'
+			// 	dataVerification: false, // 'Data Verification'
+			// 	splitColumn: false, //'Split column'
+				screenshot: false, //'screenshot'
+			// 	findAndReplace: false, //'Find and Replace'
+				protection: false, // 'Worksheet protection'
+				print: false, // 'Print'
+			},
+			// data: [
+			// 	{
+			// 		"name": "Cell",
+			// 		"color": "red",
+			// 		"index": 0, //工作表索引
+			// 		"status": 1, //激活状态
+			// 		"order": 0, //工作表的下标
+			// 		"hide": 0,//是否隐藏
+			// 		"row": 15, //行数
+			// 		"column": 15, //列数
+			// 		"defaultRowHeight": 19, //自定义行高
+			// 		"defaultColWidth": 73, //自定义列宽
+			// 		"celldata": [], //初始化使用的单元格数据
+			// 		"config": {
+			// 			"merge": {}, //合并单元格
+			// 			"rowlen": {}, //表格行高
+			// 			"columnlen": {}, //表格列宽
+			// 			"rowhidden": {}, //隐藏行
+			// 			"colhidden": {}, //隐藏列
+			// 			"borderInfo": {}, //边框
+			// 			"authority": {}, //工作表保护
+
+			// 		},
+			// 		"scrollLeft": 0, //左右滚动条位置
+			// 		"scrollTop": 315, //上下滚动条位置
+			// 		"luckysheet_select_save": [], //选中的区域
+			// 		"calcChain": [],
+			// 		"isPivotTable": false,
+			// 		"pivotTable": {},
+			// 		"filter_select": {},
+			// 		"filter": null,
+			// 		"luckysheet_alternateformat_save": [],
+			// 		"luckysheet_alternateformat_save_modelCustom": [],
+			// 		"luckysheet_conditionformat_save": {},
+			// 		"frozen": {},
+			// 		"chart": [],
+			// 		"zoomRatio": 1,
+			// 		"image": [],
+			// 		"showGridLines": 1,
+			// 		"dataVerification": {}
+			// 	},
+			// 	{
+			// 		"name": "Sheet2",
+			// 		color: "",
+			// 		"status": "0",
+			// 		"order": "1",
+			// 		"data": [],
+			// 		"config": {},
+			// 		"index": 1
+			// 	},
+			// ]
+			// More other settings...
+		}
 		$(function () {
-			luckysheet.create({
-				container: 'luckysheet',
-				lang: lang,
-				allowEdit:true,
-				forceCalculation:false,
-				plugins: ['chart'],
-				fontList:[
-					{
-					"fontName":"HanaleiFill",
-					"url":"./assets/iconfont/HanaleiFill-Regular.ttf"
-					},
-					{
-					"fontName":"Anton",
-					"url":"./assets/iconfont/Anton-Regular.ttf"
-					},
-					{
-					"fontName":"Pacifico",
-					"url":"./assets/iconfont/Pacifico-Regular.ttf"
-					}
-				],
-				hook:{
-					rowTitleCellRenderBefore:function(rowNum,postion,ctx){
-						// console.log(rowNum);
-					},
-					rowTitleCellRenderAfter:function(rowNum,postion,ctx){
-						// console.log(ctx);
-					},
-					columnTitleCellRenderBefore:function(columnAbc,postion,ctx){
-						// console.log(columnAbc);
-					},
-					columnTitleCellRenderAfter:function(columnAbc,postion,ctx){
-						// console.log(postion);
-					},
-					cellRenderBefore:function(cell,postion,sheetFile,ctx){
-						// console.log(cell,postion,sheetFile,ctx);
-					},
-					cellRenderAfter:function(cell,postion,sheetFile,ctx){
-						// console.log(postion);
-					},
-					cellMousedownBefore:function(cell,postion,sheetFile,ctx){
-						// console.log(postion);
-					},
-					cellMousedown:function(cell,postion,sheetFile,ctx){
-						// console.log(sheetFile);
-					},
-					sheetMousemove:function(cell,postion,sheetFile,moveState,ctx){
-						// console.log(cell,postion,sheetFile,moveState,ctx);
-					},
-					sheetMouseup:function(cell,postion,sheetFile,moveState,ctx){
-						// console.log(cell,postion,sheetFile,moveState,ctx);
-					},
-				},
-				data: 
-				[sheetCell,sheetFormula,sheetConditionFormat,sheetSparkline,sheetTable,sheetComment,sheetPivotTableData,sheetPivotTable,sheetChart,sheetPicture,sheetDataVerification]				
-			})
-			
+
+			luckysheet.create(options)
+
+			// 	luckysheet.create({
+			// 		container: 'luckysheet',
+			// 		lang: lang,
+			// 		allowEdit:true,
+			// 		forceCalculation:false,
+			// 		plugins: ['chart'],
+			// 		fontList:[
+			// 			{
+			// 			"fontName":"HanaleiFill",
+			// 			"url":"./assets/iconfont/HanaleiFill-Regular.ttf"
+			// 			},
+			// 			{
+			// 			"fontName":"Anton",
+			// 			"url":"./assets/iconfont/Anton-Regular.ttf"
+			// 			},
+			// 			{
+			// 			"fontName":"Pacifico",
+			// 			"url":"./assets/iconfont/Pacifico-Regular.ttf"
+			// 			}
+			// 		],
+			// 		hook:{
+			// 			rowTitleCellRenderBefore:function(rowNum,postion,ctx){
+			// 				// console.log(rowNum);
+			// 			},
+			// 			rowTitleCellRenderAfter:function(rowNum,postion,ctx){
+			// 				// console.log(ctx);
+			// 			},
+			// 			columnTitleCellRenderBefore:function(columnAbc,postion,ctx){
+			// 				// console.log(columnAbc);
+			// 			},
+			// 			columnTitleCellRenderAfter:function(columnAbc,postion,ctx){
+			// 				// console.log(postion);
+			// 			},
+			// 			cellRenderBefore:function(cell,postion,sheetFile,ctx){
+			// 				// console.log(cell,postion,sheetFile,ctx);
+			// 			},
+			// 			cellRenderAfter:function(cell,postion,sheetFile,ctx){
+			// 				// console.log(postion);
+			// 			},
+			// 			cellMousedownBefore:function(cell,postion,sheetFile,ctx){
+			// 				// console.log(postion);
+			// 			},
+			// 			cellMousedown:function(cell,postion,sheetFile,ctx){
+			// 				// console.log(sheetFile);
+			// 			},
+			// 			sheetMousemove:function(cell,postion,sheetFile,moveState,ctx){
+			// 				// console.log(cell,postion,sheetFile,moveState,ctx);
+			// 			},
+			// 			sheetMouseup:function(cell,postion,sheetFile,moveState,ctx){
+			// 				// console.log(cell,postion,sheetFile,moveState,ctx);
+			// 			},
+			// 		},
+			// 		data: 
+			// 		[sheetCell,sheetFormula,sheetConditionFormat,sheetSparkline,sheetTable,sheetComment,sheetPivotTableData,sheetPivotTable,sheetChart,sheetPicture,sheetDataVerification]				
+			// 	})
+
 		})
+
+
 	</script>
-	
+
 </body>
 
 </html>
